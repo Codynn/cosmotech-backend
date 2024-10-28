@@ -3,6 +3,7 @@ const { StatusCodes } = require("http-status-codes");
 const bcrypt = require("bcryptjs");
 const models = require("../../models/index.model");
 const { ROLES } = require("../../constants/role.constants");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
     const {
@@ -28,7 +29,7 @@ const signup = async (req, res) => {
     }
 
     if (role === ROLES.ADMIN) {
-        const admins = await models.userModel.fiNnd({
+        const admins = await models.userModel.find({
             role: ROLES.ADMIN,
         });
 

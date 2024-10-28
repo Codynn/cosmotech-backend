@@ -38,7 +38,7 @@ router.delete(
 router.post(
     "/:id/comment",
     verifyToken,
-)
+);
 
 
 
@@ -48,8 +48,5 @@ router.post(
     verifyToken,
     createReview,
 );
-
-
-
 
 module.exports = router;

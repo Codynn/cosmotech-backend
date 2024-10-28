@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 const models = require('../models/index.model');
-const ACCESS_SECRET = process.env.JWT_SECRET;
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
 const verifyToken = async (req, res, next) => {
     try {
