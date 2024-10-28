@@ -1,0 +1,8 @@
+*lock.yaml
+*lock.json
+*lock.yml
+
+.env
+node_modules
+*.test
+test.*
