@@ -2,20 +2,22 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const errorHandler = require("./middlewares/error.middleware");
+const mainRouter = require("./routes/index.routes");
 const { connectToMongoDB } = require("./services/database.services");
 const corsOptions = {
     origin: "*",
 };
-
-
 const app = express();
-require('express-async-errors');
+
 
 app.use(express.json({
   limit: "50mb"
 }));
 
 app.use(cors(corsOptions));
+
+app.use("/api", mainRouter);
+
 app.use(express.static('public'));
 app.use(errorHandler);
 
