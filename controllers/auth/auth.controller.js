@@ -44,10 +44,10 @@ const signup = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const newUser = await new models.userModel({
+        ...req.body,
         email,
         password: passwordHash,
         role,
-        ...req.body,
     }).save();
 
     return res.status(StatusCodes.CREATED).json({

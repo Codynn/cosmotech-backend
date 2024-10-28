@@ -1,5 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const models = require("../../models/index.model");
+require("express-async-errors");
 
 const createProduct = async (req, res) => {
     const newProduct = new models.productModel(req.body).save();
