@@ -7,10 +7,10 @@ const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
     const {
-        email, password, role, username, photo
+        email, password, role
     } = req.body;
 
-    if (!email || !password || !role || !username) {
+    if (!email || !password || !role) {
         return res.status(StatusCodes.BAD_REQUEST).json({
             success: false,
             message: "Please provide email, password, role and username",
@@ -47,8 +47,7 @@ const signup = async (req, res) => {
         email,
         password: passwordHash,
         role,
-        username,
-        photo,
+        ...req.body,
     }).save();
 
     return res.status(StatusCodes.CREATED).json({

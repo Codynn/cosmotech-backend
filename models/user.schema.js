@@ -3,7 +3,9 @@ const { BaseMongooseSchema, RequiredString } = require("./base.schema");
 const { ROLES } = require("../constants/role.constants");
 
 const userSchema = new BaseMongooseSchema({
-  username: RequiredString,
+  firstName: RequiredString,
+  lastName: RequiredString,
+  phoneNumber: RequiredString,
   email: {
     ...RequiredString,
     unique: true,
