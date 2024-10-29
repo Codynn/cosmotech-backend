@@ -9,12 +9,12 @@ const aboutSchema = new BaseMongooseSchema({
     pageSubheading: RequiredString,
     story: {
         storyTitle: RequiredString,
-        storyDescrption: RequiredString,
+        storyDescription: RequiredString,
         storyImage: RequiredString,
     },
     highlights: {
         highlightTitle: RequiredString,
-        highlightDescrption: RequiredString,
+        highlightDescription: RequiredString,
         highlightImage: RequiredString,
         projectsCompleted: Number,
         fundedAmount: Number,
@@ -23,7 +23,7 @@ const aboutSchema = new BaseMongooseSchema({
     },
     values: {
         valueTitle: RequiredString,
-        valueDescrption: RequiredString,
+        valueDescription: RequiredString,
         valueList: [
             {
                 image: String,
@@ -34,7 +34,7 @@ const aboutSchema = new BaseMongooseSchema({
     },
     press: {
         pressTitle: RequiredString,
-        pressDescrption: RequiredString,
+        pressDescription: RequiredString,
         pressList: [
             {
                 image: RequiredString,

@@ -1,17 +1,26 @@
 const { StatusCodes } = require("http-status-codes");
 const models = require("../../models/index.model");
 
-const createAboutPageContent = async (req, res) => {
-    const newAboutPageContent = new models.aboutPageModel(req.body).save();
-    return res.status(StatusCodes.CREATED).json({
+const createUpdateAboutPageContent = async (req, res) => {
+    const aboutPageContent = await models.aboutPageModel.findOne({});
+    if (!aboutPageContent) {
+        const newAboutPageContent = await new models.aboutPageModel(req.body).save();
+        return res.status(StatusCodes.CREATED).json({
+            success: true,
+            message: "About Page Content created successfully",
+            data: newAboutPageContent,
+        });
+    }
+    const updatedAboutPageContent = await models.aboutPageModel.findByIdAndUpdate(aboutPageContent._id, req.body, { new: true });
+    return res.status(StatusCodes.OK).json({
         success: true,
-        message: "About Page Content initiated successfully",
-        data: newAboutPageContent,
+        message: "About Page Content updated successfully",
+        data: updatedAboutPageContent,
     });
 }
 
 const getAboutPageContents = async (req, res) => {
-    const aboutPageContents = await models.aboutPageModel.find();
+    const aboutPageContents = await models.aboutPageModel.findOne({});
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "About Page Contents fetched successfully",
@@ -19,38 +28,7 @@ const getAboutPageContents = async (req, res) => {
     });
 }
 
-const updateAboutPageContent = async (req, res) => {
-    const aboutPageContent = await models.aboutPageModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!aboutPageContent) {
-        return res.status(StatusCodes.NOT_FOUND).json({
-            success: false,
-            message: "AboutPageContent not found",
-        });
-    }
-    return res.status(StatusCodes.OK).json({
-        success: true,
-        message: "AboutPageContent updated successfully",
-        data: aboutPageContent,
-    });
-}
-
-const deleteAboutPageContent = async (req, res) => {
-    const aboutPageContent = await models.aboutPageModel.findByIdAndDelete(req.params.id);
-    if (!aboutPageContent) {
-        return res.status(StatusCodes.NOT_FOUND).json({
-            success: false,
-            message: "AboutPageContent not found",
-        });
-    }
-    return res.status(StatusCodes.OK).json({
-        success: true,
-        message: "AboutPageContent deleted successfully",
-    });
-}
-
 module.exports = {
-    createAboutPageContent,
+    createUpdateAboutPageContent,
     getAboutPageContents,
-    updateAboutPageContent,
-    deleteAboutPageContent,
 };
