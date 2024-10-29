@@ -2,7 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const models = require("../../models/index.model");
 
 const createFaq = async (req, res) => {
-    const newFaq = new models.faqModel(req.body).save();
+    const newFaq = await new models.faqModel(req.body).save();
     return res.status(StatusCodes.CREATED).json({
         success: true,
         message: "Faq created successfully",
@@ -11,7 +11,7 @@ const createFaq = async (req, res) => {
 }
 
 const getFaqs = async (req, res) => {
-    const faqs = await models.faqModel.find();
+    const faqs = await models.faqModel.find({});
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Faqs fetched successfully",

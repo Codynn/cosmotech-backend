@@ -11,7 +11,14 @@ const createProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
-    const products = await models.productModel.find({});
+    let filter = {};
+    if (req.query.category) {
+        filter.category = req.query.category;
+    }
+    if (req.query.q) {
+        filter.name = { $regex: req.query.q, $options: "i" };
+    }
+    const products = await models.productModel.find(filter).populate("category");
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Products fetched successfully",
