@@ -22,6 +22,7 @@ const productSchema = new BaseMongooseSchema({
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "categories",
+        required: true,
     },
     averageRating: {
         type: Number,
