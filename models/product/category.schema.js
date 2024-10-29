@@ -8,7 +8,10 @@ const categorySchema = new BaseMongooseSchema({
     name: RequiredString,
     description: String,
     image: String,
-    productsCount: String,
+    productsCount: {
+        type: Number,
+        default: 0,
+    },
 }, {
     timestamps: true,
 });

@@ -2,7 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const models = require("../../models/index.model");
 
 const createCategory = async (req, res, next) => {
-    const newCategory = new models.categoryModel(req.body).save();
+    const newCategory = await new models.categoryModel(req.body).save();
     return res.status(StatusCodes.CREATED).json({
         success: true,
         message: "Category created successfully",
@@ -11,7 +11,7 @@ const createCategory = async (req, res, next) => {
 }
 
 const getCategories = async (req, res, next) => {
-    const categories = await models.categoryModel.find();
+    const categories = await models.categoryModel.find({});
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Categories fetched successfully",
@@ -45,6 +45,7 @@ const deleteCategory = async (req, res, next) => {
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Category deleted successfully",
+        data: category,
     });
 }
 

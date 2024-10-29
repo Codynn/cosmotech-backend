@@ -1,36 +1,35 @@
 const { ROLES } = require('../constants/role.constants');
-const { createProduct, getProducts, updateProduct, deleteProduct } = require('../controllers/product/product.controller');
-const { createReview } = require('../controllers/product/review.controller');
+const { createCategory, getCategories, updateCategory, deleteCategory } = require('../controllers/product/category.controller');
 const { verifyToken, checkRoles } = require('../middlewares/auth.middleware');
 const router = require('express').Router();
 require('express-async-errors');
 
 
-// Product CRUD
+// Category CRUD
 router.post(
     "",
     verifyToken,
     checkRoles(ROLES.ADMIN),
-    createProduct,
+    createCategory,
 );
 
 router.get(
     "/:id?",
-    getProducts,
+    getCategories,
 );
 
 router.put(
     "/:id",
     verifyToken,
     checkRoles(ROLES.ADMIN),
-    updateProduct,
+    updateCategory,
 );
 
 router.delete(
     "/:id",
     verifyToken,
     checkRoles(ROLES.ADMIN),
-    deleteProduct,
+    deleteCategory,
 );
 
 

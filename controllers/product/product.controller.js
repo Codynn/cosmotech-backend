@@ -1,9 +1,8 @@
 const { StatusCodes } = require("http-status-codes");
 const models = require("../../models/index.model");
-require("express-async-errors");
 
 const createProduct = async (req, res) => {
-    const newProduct = new models.productModel(req.body).save();
+    const newProduct = await new models.productModel(req.body).save();
     return res.status(StatusCodes.CREATED).json({
         success: true,
         message: "Product created successfully",
@@ -12,7 +11,7 @@ const createProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
-    const products = await models.productModel.find();
+    const products = await models.productModel.find({});
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Products fetched successfully",
@@ -46,6 +45,7 @@ const deleteProduct = async (req, res) => {
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Product deleted successfully",
+        data: product,
     });
 }
 
