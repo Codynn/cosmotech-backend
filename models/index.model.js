@@ -5,7 +5,9 @@ const models = {
     categoryModel: require("./product/category.schema"),
     reviewModel: require("./product/review.schema"),
     faqModel: require("./pages/faq.schema"),
-    aboutPageModel: require("./pages/aboutpage.schema"),    
+    aboutPageModel: require("./pages/aboutpage.schema"),  
+    blogModel: require("./blogs/blog.schema"),
+    blogCategoryModel: require("./blogs/blog.category.schema"),  
 };
 
 module.exports = models;
