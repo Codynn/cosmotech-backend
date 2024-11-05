@@ -11,6 +11,20 @@ const createProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
+    if (req.params.id) {
+        const product = await models.productModel.findById(req.params.id).populate("category");
+        if (!product) {
+            return res.status(StatusCodes.NOT_FOUND).json({
+                success: false,
+                message: "Product not found",
+            });
+        }
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Product fetched successfully",
+            data: product,
+        });
+    }
     let filter = {};
     if (req.query.category) {
         filter.category = req.query.category;
