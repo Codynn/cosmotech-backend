@@ -1,4 +1,5 @@
 const { ROLES } = require('../constants/role.constants');
+const { getContentCount, getProductsDistribution, getBlogsDistribution } = require('../controllers/analytics.controller');
 const { verifyToken, checkRoles } = require('../middlewares/auth.middleware');
 const router = require('express').Router();
 require('express-async-errors');
