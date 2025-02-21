@@ -16,7 +16,7 @@ const getContentCount = async (req, res) => {
 };
 
 const getProductsDistribution = async (req, res) => {
-    const products = await models.productModel.find({}).populate("categories");
+    const products = await models.productModel.find({}).populate("category");
 
     let byCategory = {};
     products.forEach((product) => {
