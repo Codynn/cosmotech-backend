@@ -7,6 +7,11 @@ const {
 const faqSchema = new BaseMongooseSchema({
     question: RequiredString,
     answer: RequiredString,
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "faqcategories",
+        required: true,
+    }
 }, {
     timestamps: true,
 });

@@ -11,7 +11,7 @@ const createFaq = async (req, res) => {
 }
 
 const getFaqs = async (req, res) => {
-    const faqs = await models.faqModel.find({});
+    const faqs = await models.faqModel.find({}).populate("category");
     return res.status(StatusCodes.OK).json({
         success: true,
         message: "Faqs fetched successfully",
