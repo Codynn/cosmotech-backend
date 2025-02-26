@@ -30,6 +30,13 @@ const productSchema = new BaseMongooseSchema({
         min: 0,
         max: 5,
     },
+    availableSizes: [String],
+    details: {
+        keyBenefits: [String],
+        keyIngredients: [String],
+        howToUse: [String],
+        whyChoose: [String],
+    }
 }, {
     timestamps: true,
 });
