@@ -8,7 +8,8 @@ const models = {
     faqCategoryModel: require("./pages/faqCategory.schema"),
     aboutPageModel: require("./pages/aboutpage.schema"),  
     blogModel: require("./blogs/blog.schema"),
-    blogCategoryModel: require("./blogs/blog.category.schema"),  
+    blogCategoryModel: require("./blogs/blog.category.schema"), 
+    contactUsMessageModel: require("./contactUsMessage.schema"), 
 };
 
 module.exports = models;
