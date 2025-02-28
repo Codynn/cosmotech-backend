@@ -12,7 +12,10 @@ const createProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
     if (req.params.id) {
-        const product = await models.productModel.findById(req.params.id).populate("category");
+        const product = await models.productModel.findById(req.params.id).populate("category").lean();
+        const reviews = await models.reviewModel.find({ product: req.params.id });
+        product.totalReviews = reviews.length;
+        product.averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
         if (!product) {
             return res.status(StatusCodes.NOT_FOUND).json({
                 success: false,
