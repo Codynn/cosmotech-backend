@@ -72,6 +72,7 @@ const deleteReview = async (req, res) => {
 
 const getHomepageReviews = async (req, res) => {
     const reviews = await models.reviewModel.find()
+        .populate("product")
         .sort({ rating: -1 })
         .limit(9);
     return res.status(StatusCodes.OK).json({
