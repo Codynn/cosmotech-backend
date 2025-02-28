@@ -10,9 +10,10 @@ const reviewSchema = new BaseMongooseSchema({
         ref: "products",
         required: true,
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+    username: RequiredString,
+    email: RequiredString,
+    wouldYouRecommend: {
+        type: Boolean,
         required: true,
     },
     rating: {

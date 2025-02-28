@@ -32,10 +32,9 @@ const productSchema = new BaseMongooseSchema({
     },
     availableSizes: [String],
     details: {
-        keyBenefits: [String],
-        keyIngredients: [String],
-        howToUse: [String],
-        whyChoose: [String],
+        type: mongoose.Schema.Types.Mixed,
+        default: {},
+        required: true,
     }
 }, {
     timestamps: true,

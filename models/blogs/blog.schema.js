@@ -7,6 +7,7 @@ const {
 const blogSchema = new BaseMongooseSchema({
     title: RequiredString,
     content: mongoose.Schema.Types.Mixed,
+    bannerImage: String,
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "blogcategories",
